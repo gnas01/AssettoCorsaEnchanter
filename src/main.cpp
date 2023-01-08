@@ -2,10 +2,16 @@
 //
 
 #include <iostream>
+#include "process.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Process assetoCorsa(L"acs.exe");
+    DWORD procId = assetoCorsa.GetProcessId();
+    uintptr_t moduleBaseAddress = assetoCorsa.GetProcessId();
+    HANDLE procHandle = assetoCorsa.GetHandle();
+
+    std::cout << procHandle;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
