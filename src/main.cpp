@@ -3,15 +3,19 @@
 
 #include <iostream>
 #include "process.h"
+#include "dynamic_address.h"
 
 int main()
 {
     Process assetoCorsa(L"acs.exe");
-    DWORD procId = assetoCorsa.GetProcessId();
-    uintptr_t moduleBaseAddress = assetoCorsa.GetProcessId();
-    HANDLE procHandle = assetoCorsa.GetHandle();
+    DynamicAddress idleRpm(&assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
+    DynamicAddress currentRpm(&assetoCorsa, 0x01559AF0, { 0x38, 0xC0, 0x10, 0xF8, 0x48, 0x20, 0x5D8 });
 
-    std::cout << procHandle;
+    std::cout << idleRpm.Read<int>();
+    idleRpm.Write(3000);
+    std::cout << idleRpm.Read<int>();
+
+    getchar();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
