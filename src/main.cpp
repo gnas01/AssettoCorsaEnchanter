@@ -11,9 +11,15 @@ int main()
     DynamicAddress idleRpm(&assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
     DynamicAddress currentRpm(&assetoCorsa, 0x01559AF0, { 0x38, 0xC0, 0x10, 0xF8, 0x48, 0x20, 0x5D8 });
 
-    std::cout << idleRpm.Read<int>();
+    int result = 0;
+
+    idleRpm.Read(&result);
+    std::cout << result << std::endl;
+
     idleRpm.Write(3000);
-    std::cout << idleRpm.Read<int>();
+
+    idleRpm.Read(&result);
+    std::cout << result << std::endl;
 
     getchar();
 }

@@ -14,11 +14,9 @@ public:
 	}
 
 	template <typename T>
-	T Read()
+	void Read(T* result)
 	{
-		T result = 0;
-		ReadProcessMemory(process->GetHandle(), (BYTE*)dynamicMemoryAddress, &result, sizeof(result), nullptr);
-		return result;
+		ReadProcessMemory(process->GetHandle(), (BYTE*)dynamicMemoryAddress, result, sizeof(*result), nullptr);
 	}
 private:
 	uintptr_t FindDynamicMemoryAddress();
