@@ -8,6 +8,11 @@ Process::Process(const wchar_t* processName)
 	this->cachedHandle = 0;
 }
 
+bool Process::IsValid()
+{
+    return cachedHandle != 0;
+}
+
 HANDLE Process::GetHandle()
 {
 	if (cachedHandle != 0)

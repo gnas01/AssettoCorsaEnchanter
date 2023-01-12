@@ -8,6 +8,7 @@ class Process
 {
 public:
 	Process(const wchar_t* processName);
+	bool IsValid();
 	HANDLE GetHandle();
 	uintptr_t GetModuleBaseAddress();
 	DWORD GetProcessId();
