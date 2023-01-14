@@ -21,7 +21,7 @@ void Drivetrain::EnableAntiSlowSpeedRoll()
 	openClutchVelocityStopper->RevertBytes();
 }
 
-void Drivetrain::CleanMemory()
+void Drivetrain::ClearMemory()
 {
 	delete openClutchVelocityStopper;
 	openClutchVelocityStopper = nullptr;

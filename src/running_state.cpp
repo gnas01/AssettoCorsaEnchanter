@@ -62,11 +62,11 @@ bool RunningState::HasTurnedOn()
 
 void RunningState::Exit()
 {
-	drivetrain->CleanMemory();
+	drivetrain->ClearMemory();
 	delete drivetrain;
 	drivetrain = nullptr;
 
-	engine->CleanMemory();
+	engine->ClearMemory();
 	delete engine;
 	engine = nullptr;
 }

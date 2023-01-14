@@ -39,7 +39,7 @@ void Engine::setCurrentRpm(float value)
     currentRpm->Write(value);
 }
 
-void Engine::CleanMemory()
+void Engine::ClearMemory()
 {
     delete idleRpm;
     idleRpm = nullptr;

@@ -14,7 +14,7 @@ public:
 	float GetCurrentRpm();
 	void setCurrentRpm(float value);
 
-	void CleanMemory();
+	void ClearMemory();
 
 private:
 	DynamicAddress* idleRpm;
