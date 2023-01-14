@@ -19,9 +19,10 @@ int main()
 
     stateMachine->SetState(new WaitingState(stateMachine, assetoCorsa, assetoCorsaProcMon));
 
-     while (1) {
+     while (1) 
+     {
         stateMachine->Update();
-    }
+     }
 
      delete stateMachine;
      stateMachine = nullptr;
