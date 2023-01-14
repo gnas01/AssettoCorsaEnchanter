@@ -48,7 +48,6 @@ void RunningState::Update()
 bool RunningState::HasStalled()
 {
 	float currentRpm = engine->GetCurrentRpm();
-	std::cout << currentRpm << std::endl;
 	int idleRpm = engine->GetIdleRpm();
 
 	return (currentRpm + stallThreshold < idleRpm) && !hasStalled;
