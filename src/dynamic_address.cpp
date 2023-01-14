@@ -8,6 +8,11 @@ DynamicAddress::DynamicAddress(Process* process, uintptr_t baseAddress, std::vec
 	this->dynamicMemoryAddress = FindDynamicMemoryAddress();
 }
 
+void DynamicAddress::RefreshDynamicMemoryAddress()
+{
+	dynamicMemoryAddress = FindDynamicMemoryAddress();
+}
+
 uintptr_t DynamicAddress::FindDynamicMemoryAddress()
 {
 	uintptr_t dynamicMemoryAddress = process->GetModuleBaseAddress() + baseAddress;

@@ -18,6 +18,8 @@ public:
 	{
 		ReadProcessMemory(process->GetHandle(), (BYTE*)dynamicMemoryAddress, result, sizeof(*result), nullptr);
 	}
+
+	void RefreshDynamicMemoryAddress();
 private:
 	uintptr_t FindDynamicMemoryAddress();
 
