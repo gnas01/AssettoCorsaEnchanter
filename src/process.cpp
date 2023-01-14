@@ -13,6 +13,14 @@ bool Process::IsValid()
     return cachedHandle != 0;
 }
 
+void Process::ClearCache()
+{
+    cachedHandle = 0;
+    cachedModuleBaseAddress = 0;
+    cachedProcessId = 0;
+}
+
+
 HANDLE Process::GetHandle()
 {
 	if (cachedHandle != 0)
@@ -22,7 +30,9 @@ HANDLE Process::GetHandle()
 
 	DWORD processId = GetProcessId();
 
-	return OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
+	cachedHandle = OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
+
+    return cachedHandle;
 }
 
 DWORD Process::GetProcessId()
@@ -51,6 +61,7 @@ DWORD Process::GetProcessId()
         if (!_wcsicmp(processEntry.szExeFile, processName))
         {
             processId = processEntry.th32ProcessID;
+            cachedProcessId = processId;
             break;
         }
 
@@ -96,9 +107,11 @@ uintptr_t Process::GetModuleBaseAddress()
         isFound = Module32Next(snapshot, &moduleEntry);
     }
 
+    cachedModuleBaseAddress = moduleBaseAddress;
+
     // Clean up the snapshot handle
     CloseHandle(snapshot);
-    return moduleBaseAddress;
+    return cachedModuleBaseAddress;
 }
 
 Process::~Process()
