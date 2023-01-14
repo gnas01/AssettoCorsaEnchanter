@@ -19,6 +19,4 @@ void WaitingState::Update()
 
 void WaitingState::Exit()
 {
-	delete assetoCorsaProcMon;
-	assetoCorsaProcMon = nullptr;
 }
