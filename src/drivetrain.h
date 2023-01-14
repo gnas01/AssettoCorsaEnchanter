@@ -6,6 +6,8 @@ public:
 	Drivetrain(Instruction* openClutchVelocityStopper, Instruction* below5msCheck);
 	void DisableAntiSlowSpeedRoll();
 	void EnableAntiSlowSpeedRoll();
+
+	void CleanMemory();
 private:
 	Instruction* openClutchVelocityStopper;
 	Instruction* below5msCheck;

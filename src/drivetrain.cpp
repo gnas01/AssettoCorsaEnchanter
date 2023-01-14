@@ -20,3 +20,12 @@ void Drivetrain::EnableAntiSlowSpeedRoll()
 	below5msCheck->RevertBytes();
 	openClutchVelocityStopper->RevertBytes();
 }
+
+void Drivetrain::CleanMemory()
+{
+	delete openClutchVelocityStopper;
+	openClutchVelocityStopper = nullptr;
+
+	delete below5msCheck;
+	below5msCheck = nullptr;
+}

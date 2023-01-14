@@ -13,14 +13,30 @@ int main()
 
     Process* assetoCorsa = new Process(L"acs.exe");
 
+    DynamicAddress* currentRpm = new DynamicAddress(assetoCorsa, 0x01559AF0, { 0x38, 0xC0, 0x10, 0xF8, 0x48, 0x20, 0x5D8 });
     DynamicAddress* idleRpm = new DynamicAddress(assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
-    AssetoCorsaProcMon* assetoCorsaProcMon = new AssetoCorsaProcMon(assetoCorsa, idleRpm);
+    AssetoCorsaProcMon* assetoCorsaProcMon = new AssetoCorsaProcMon(assetoCorsa, currentRpm, idleRpm);
 
     stateMachine->SetState(new WaitingState(stateMachine, assetoCorsa, assetoCorsaProcMon));
 
      while (1) {
         stateMachine->Update();
     }
+
+     delete stateMachine;
+     stateMachine = nullptr;
+
+     delete assetoCorsa;
+     assetoCorsa = nullptr;
+
+     delete currentRpm;
+     currentRpm = nullptr;
+
+     delete idleRpm;
+     idleRpm = nullptr;
+
+     delete assetoCorsaProcMon;
+     assetoCorsa = nullptr;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
