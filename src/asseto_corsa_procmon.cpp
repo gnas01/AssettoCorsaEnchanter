@@ -1,9 +1,9 @@
 #include "asseto_corsa_procmon.h"
 
-AssetoCorsaProcMon::AssetoCorsaProcMon(Process* process, DynamicAddress* idleRpmAddress)
+AssetoCorsaProcMon::AssetoCorsaProcMon(Process* process, DynamicAddress* currentRpmAddress)
 {
 	this->process = process;
-	this->idleRpmAddress = idleRpmAddress;
+	this->currentRpmAddress = currentRpmAddress;
 }
 
 bool AssetoCorsaProcMon::IsRunning()
@@ -13,10 +13,10 @@ bool AssetoCorsaProcMon::IsRunning()
 		return false;
 	}
 
-    DynamicAddress idleRpm(process, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
+	currentRpmAddress->RefreshDynamicMemoryAddress();
 
 	int result;
-	idleRpm.Read(&result);
+	currentRpmAddress->Read(&result);
 
 	return result > 0;
 }
