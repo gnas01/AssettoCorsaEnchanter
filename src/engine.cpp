@@ -18,12 +18,12 @@ void Engine::DisableEngineStall()
     engineStall->RevertBytes();
 }
 
-int Engine::GetIdleRpm()
+float Engine::GetIdleRpm()
 {
     int result = 0;
 
     idleRpm->Read(&result);
-    return result;
+    return static_cast<float>(result);
 }
 
 float Engine::GetCurrentRpm()

@@ -10,7 +10,7 @@ public:
 	void EnableEngineStall();
 	void DisableEngineStall();
 
-	int GetIdleRpm();
+	float GetIdleRpm();
 	float GetCurrentRpm();
 	void setCurrentRpm(float value);
 

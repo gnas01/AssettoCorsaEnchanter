@@ -8,5 +8,5 @@ public:
 	void EnableAntiSlowSpeedRoll();
 private:
 	Instruction* openClutchVelocityStopper;
-	Instruction* below5msCheck
+	Instruction* below5msCheck;
 };

@@ -8,11 +8,15 @@ Drivetrain::Drivetrain(Instruction* openClutchVelocityStopper, Instruction* belo
 
 void Drivetrain::DisableAntiSlowSpeedRoll()
 {
-    std::vector<BYTE> jmp{ 0xE9, 0xAB};
-    below5msCheck->PatchBytes(&jmp);
+    std::vector<BYTE> jmpBelow5ms{ 0xE9, 0xAB};
+    below5msCheck->PatchBytes(&jmpBelow5ms);
+
+    std::vector<BYTE> jmpOpenClutch{ 0xEB, 0x13};
+	openClutchVelocityStopper->PatchBytes(&jmpOpenClutch);
 }
 
 void Drivetrain::EnableAntiSlowSpeedRoll()
 {
 	below5msCheck->RevertBytes();
+	openClutchVelocityStopper->RevertBytes();
 }
