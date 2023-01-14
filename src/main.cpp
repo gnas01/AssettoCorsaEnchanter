@@ -3,26 +3,24 @@
 
 #include <iostream>
 #include "process.h"
-#include "dynamic_address.h"
-#include "instruction.h"
+#include "asseto_corsa_procmon.h"
+#include "state_machine.h"
+#include "waiting_state.h"
 
 int main()
 {
-    Process assetoCorsa(L"acs.exe");
-    DynamicAddress idleRpm(&assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
-    DynamicAddress currentRpm(&assetoCorsa, 0x01559AF0, { 0x38, 0xC0, 0x10, 0xF8, 0x48, 0x20, 0x5D8 });
-    Instruction minimumSpeedCheck(&assetoCorsa, 0x2762F0, 3);
-    std::vector<BYTE> jmp{ 0xE9, 0xAB};
-    minimumSpeedCheck.PatchBytes(&jmp);
-    minimumSpeedCheck.RevertBytes();
+    StateMachine* stateMachine = new StateMachine();
 
+    Process* assetoCorsa = new Process(L"acs.exe");
 
-    int result = 0;
+    DynamicAddress* idleRpm = new DynamicAddress(assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
+    AssetoCorsaProcMon* assetoCorsaProcMon = new AssetoCorsaProcMon(assetoCorsa, idleRpm);
 
-    idleRpm.Read(&result);
-    std::cout << result << std::endl;
+    stateMachine->SetState(new WaitingState(stateMachine, assetoCorsa, assetoCorsaProcMon));
 
-    getchar();
+     while (1) {
+        stateMachine->Update();
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
