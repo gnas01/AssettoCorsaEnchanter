@@ -6,6 +6,7 @@
 #include "asseto_corsa_procmon.h"
 #include "state_machine.h"
 #include "waiting_state.h"
+#include <thread>
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
 
      while (1) 
      {
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
         stateMachine->Update();
      }
 
