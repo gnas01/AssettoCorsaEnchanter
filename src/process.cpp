@@ -10,7 +10,10 @@ Process::Process(const wchar_t* processName)
 
 bool Process::IsValid()
 {
-    return cachedHandle != 0;
+    DWORD exitCode = 0;
+    GetExitCodeProcess(GetHandle(), &exitCode);
+
+    return exitCode != 0;
 }
 
 void Process::ClearCache()
