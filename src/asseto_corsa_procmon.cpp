@@ -48,16 +48,18 @@ bool AssetoCorsaProcMon::IsRunning()
 			isRunning = true;
 		}
 
-		std::cout << currentRpmResult << std::endl;;
-
-
 		return isRunning;
 	}
 	else
 	{
 		int result;
 		idleRpmAddress->Read(&result);
-		isRunning = result > 0;
+
+		if (result <= 0)
+		{
+			isRunning = process->IsValid();
+		}
+
 		return isRunning;
 	}
 
