@@ -6,13 +6,21 @@
 class WaitingState: public State
 {
 public:
-	WaitingState(StateMachine* stateMachine, Process* process, AssetoCorsaProcMon* assetoCorsaProcMon) :
-		State(stateMachine, process, assetoCorsaProcMon) {};
+	WaitingState(StateMachine* stateMachine, Process* assetoCorsaProcess, AssetoCorsaProcMon* assetoCorsaProcMon) :
+		State(stateMachine) {
+		this->assetoCorsaProcMon = assetoCorsaProcMon;
+		this->assetoCorsaProcess = assetoCorsaProcess;
+	};
 
 	void Enter() override;
 
 	void Update() override;
 
 	void Exit() override;
+
+private:
+	Process* assetoCorsaProcess;
+	AssetoCorsaProcMon* assetoCorsaProcMon;
 };
+
 

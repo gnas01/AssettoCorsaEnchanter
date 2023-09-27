@@ -1,17 +1,25 @@
 #include "state_machine.h"
 #include "state.h"
-#include "process.h"
-#include "asseto_corsa_procmon.h"
+#include "duplicate_alias_exception.h"
 
-void StateMachine::SetState(State* state)
+void StateMachine::SetState(StateAlias stateAlias)
 {
 	if (currentState != nullptr)
 	{
 		currentState->Exit();
 	}
 
-	currentState = state;
+	currentState = states.at(stateAlias);
 	currentState->Enter();
+}
+
+void StateMachine::AddState(State* state, StateAlias stateAlias)
+{
+	if (states.find(stateAlias) != states.end()) {
+		throw DuplicateAliasException();
+	}
+
+	states[stateAlias] = state;
 }
 
 void StateMachine::Update()

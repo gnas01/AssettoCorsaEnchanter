@@ -1,21 +1,16 @@
+#include <thread>
+#include <iostream>
 #include "running_state.h"
 #include "waiting_state.h"
-#include <thread>
+#include "state_alias.h"
 
-
-#include <iostream>
-
-RunningState::RunningState(StateMachine* stateMachine, Process* process, AssetoCorsaProcMon* assetoCorsaProcMon) :
-		State(stateMachine, process, assetoCorsaProcMon)
+RunningState::RunningState(StateMachine* stateMachine, Engine* engine, Drivetrain* drivetrain, AssetoCorsaProcMon* assetoCorsaProcMon) :
+		State(stateMachine)
 {
-    Instruction* below5msCheck = new Instruction(assetoCorsa, 0x2762F0, 3);
-    Instruction* openClutchVelocityStopper = new Instruction(assetoCorsa, 0x269E3F, 3);
-	drivetrain = new Drivetrain(openClutchVelocityStopper, below5msCheck);
+	this->assetoCorsaProcMon = assetoCorsaProcMon;
 
-    DynamicAddress* idleRpm = new DynamicAddress(assetoCorsa, 0x01559AF0, { 0x58, 0x60, 0x38, 0x70, 0x8, 0x508 });
-    DynamicAddress* currentRpm = new DynamicAddress(assetoCorsa, 0x01559AF0, { 0x38, 0xC0, 0x10, 0xF8, 0x48, 0x20, 0x5D8 });
-    Instruction* engineStall = new Instruction(assetoCorsa, 0x288519, 2);
-	engine = new Engine(idleRpm, currentRpm, engineStall);
+	this->drivetrain = drivetrain;
+	this->engine = engine;
 }
 
 void RunningState::Enter()
@@ -41,7 +36,8 @@ void RunningState::Update()
 
 	if (!assetoCorsaProcMon->IsRunning())
 	{
-		stateMachine->SetState(new WaitingState(stateMachine, assetoCorsa, assetoCorsaProcMon));
+		std::this_thread::sleep_for(std::chrono::seconds(5));
+		stateMachine->SetState(StateAlias::Waiting);
 	}
 }
 
@@ -62,11 +58,6 @@ bool RunningState::HasTurnedOn()
 
 void RunningState::Exit()
 {
-	drivetrain->ClearMemory();
-	delete drivetrain;
-	drivetrain = nullptr;
-
-	engine->ClearMemory();
-	delete engine;
-	engine = nullptr;
+	hasStalled = false;
+	std::cout << "Exiting running state" << std::endl;
 }

@@ -7,10 +7,8 @@ class AssetoCorsaProcMon;
 class State
 {
 public:
-	State(StateMachine* stateMachine, Process* assetoCorsa, AssetoCorsaProcMon* assetoCorsaProcMon)
+	State(StateMachine* stateMachine)
 	{
-		this->assetoCorsa = assetoCorsa;
-		this->assetoCorsaProcMon = assetoCorsaProcMon;
 		this->stateMachine = stateMachine;
 	} 
 
@@ -21,8 +19,6 @@ public:
 	virtual void Exit() = 0;
 
 protected:
-	AssetoCorsaProcMon* assetoCorsaProcMon;
-	Process* assetoCorsa;
 	StateMachine* stateMachine;
 };
 

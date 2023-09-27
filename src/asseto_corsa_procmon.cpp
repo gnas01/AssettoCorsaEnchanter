@@ -1,28 +1,13 @@
 #include "asseto_corsa_procmon.h"
+#include "engine.h"
 #include <iostream>
 
-AssetoCorsaProcMon::AssetoCorsaProcMon(Process* process, DynamicAddress* currentRpmAddress, DynamicAddress* idleRpmAddress)
+AssetoCorsaProcMon::AssetoCorsaProcMon(Process* process, DynamicAddress* isPlayingAddress)
 {
 	this->process = process;
-	this->currentRpmAddress = currentRpmAddress;
-	this->idleRpmAddress = idleRpmAddress;
+	this->isPlayingAddress = isPlayingAddress;
 }
 
-/**
-* Previous implementation was only checking for
-* idleRpmAddress, but it turns out that by the time
-* idleRpmAddress is initialized in memory, currentRpmAddress is not.
-* We cannot only check for the currentRpmAddress if it is >=0 since, when
-* the engine stalls currentRpmAddress becomes 0. As a result isRunning falsely 
-* returns false. 
-* 
-* As a workaround a check whether the currentRpm and idleRpm is above 0
-* and the currentRpm and idleRpm is equal is made to ensure that the game is running
-* Drawbacks are that when the game starts, it takes a few seconds for the current rpms to
-* rise to the idleRpm.
-* 
-* TODO: Find a different address that we can check if everything is loaded and initialized.
-*/
 bool AssetoCorsaProcMon::IsRunning()
 {
 	if (!isRunning)
@@ -32,18 +17,12 @@ bool AssetoCorsaProcMon::IsRunning()
 			return false;
 		}
 
-		currentRpmAddress->RefreshDynamicMemoryAddress();
-		idleRpmAddress->RefreshDynamicMemoryAddress();
+		isPlayingAddress->RefreshDynamicMemoryAddress();
 
-		float currentRpmResult;
-		currentRpmAddress->Read(&currentRpmResult);
+		byte isPlayingAddressResult;
+		isPlayingAddress->Read(&isPlayingAddressResult);
 
-		int idleRpmResult;
-		idleRpmAddress->Read(&idleRpmResult);
-
-		int idleCurrentDiff = idleRpmResult - static_cast<int>(currentRpmResult);
-
-		if (currentRpmResult > 0 && idleRpmResult > 0 && idleCurrentDiff == 0)
+		if (isPlayingAddressResult == 1)
 		{
 			isRunning = true;
 		}
@@ -52,10 +31,10 @@ bool AssetoCorsaProcMon::IsRunning()
 	}
 	else
 	{
-		int result;
-		idleRpmAddress->Read(&result);
+		byte isPlayingAddressResult;
+		isPlayingAddress->Read(&isPlayingAddressResult);
 
-		if (result <= 0)
+		if (isPlayingAddressResult != 1 && isPlayingAddressResult != 0)
 		{
 			isRunning = process->IsValid();
 		}

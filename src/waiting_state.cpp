@@ -7,7 +7,7 @@
 
 void WaitingState::Enter()
 {
-	assetoCorsa->ClearCache();
+	assetoCorsaProcess->ClearCache();
 	std::cout << "Waiting for AssetoCorsa" << std::endl;
 }
 
@@ -15,11 +15,11 @@ void WaitingState::Update()
 {
 	if (assetoCorsaProcMon->IsRunning())
 	{
-		std::cout << "Asseto Corsa is running" << std::endl;
-		stateMachine->SetState(new RunningState(stateMachine, assetoCorsa, assetoCorsaProcMon));
+		stateMachine->SetState(StateAlias::Running);
 	}
 }
 
 void WaitingState::Exit()
 {
+	std::cout << "Exiting waiting state" << std::endl;
 }
