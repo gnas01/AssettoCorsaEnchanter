@@ -1,5 +1,6 @@
 #include "state_machine.h"
 #include "state.h"
+#include "duplicate_alias_exception.h"
 
 void StateMachine::SetState(StateAlias stateAlias)
 {
@@ -15,7 +16,7 @@ void StateMachine::SetState(StateAlias stateAlias)
 void StateMachine::AddState(State* state, StateAlias stateAlias)
 {
 	if (states.find(stateAlias) != states.end()) {
-		//throw exception
+		throw DuplicateAliasException();
 	}
 
 	states[stateAlias] = state;
