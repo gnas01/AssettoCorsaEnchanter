@@ -5,13 +5,12 @@
 class AssetoCorsaProcMon
 {
 public:
-	AssetoCorsaProcMon(Process* process, DynamicAddress* currentRpmAddress, DynamicAddress* idleRpmAddress);
+	AssetoCorsaProcMon(Process* process, DynamicAddress* isPlayingAddress);
 	bool IsRunning();
 
 private:
 	Process* process;
-	DynamicAddress* currentRpmAddress;
-	DynamicAddress* idleRpmAddress;
+	DynamicAddress* isPlayingAddress;
 	bool isRunning = false;
 };
 
