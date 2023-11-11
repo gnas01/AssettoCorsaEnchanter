@@ -2,8 +2,8 @@
 #include <iostream>
 #include "running_state.h"
 #include "waiting_state.h"
-#include "state_alias.h"
-#include "../config/configuration.h"
+#include "../state_alias.h"
+#include "../../config/configuration.h"
 
 RunningState::RunningState(StateMachine* stateMachine, Engine* engine, Drivetrain* drivetrain, AssetoCorsaProcMon* assetoCorsaProcMon) :
 	State(stateMachine)
