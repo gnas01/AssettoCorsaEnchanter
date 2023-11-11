@@ -1,8 +1,8 @@
 #include "configuration.h"
 #include <fstream>
 #include <sstream>
-#include "config_file_not_found_exception.h"
-#include "config_attribute_not_found.h"
+#include "exceptions/config_file_not_found_exception.h"
+#include "exceptions/config_attribute_not_found.h"
 
 Configuration* Configuration::instance = nullptr;
 

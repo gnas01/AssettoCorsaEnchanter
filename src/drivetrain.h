@@ -1,5 +1,5 @@
 #pragma once
-#include "instruction.h"
+#include "memory_tools/instruction.h"
 
 class Drivetrain {
 public:
