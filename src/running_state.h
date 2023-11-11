@@ -21,7 +21,10 @@ private:
 	Drivetrain* drivetrain;
 	AssetoCorsaProcMon* assetoCorsaProcMon;
 
-	float stallThreshold = 300;
+	int stallThreshold;
+	bool shouldStall;
+	bool shouldRoll;
+
 	bool hasStalled = false;
 
 	bool HasStalled();

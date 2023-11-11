@@ -3,30 +3,37 @@
 #include "running_state.h"
 #include "waiting_state.h"
 #include "state_alias.h"
+#include "configuration.h"
 
 RunningState::RunningState(StateMachine* stateMachine, Engine* engine, Drivetrain* drivetrain, AssetoCorsaProcMon* assetoCorsaProcMon) :
-		State(stateMachine)
+	State(stateMachine)
 {
 	this->assetoCorsaProcMon = assetoCorsaProcMon;
 
 	this->drivetrain = drivetrain;
 	this->engine = engine;
+
+	Configuration* configuration = Configuration::GetInstance();
+	shouldRoll = configuration->GetShouldRoll();
+	shouldStall = configuration->GetShouldStall();
+	stallThreshold = configuration->GetStallThreshold();
 }
 
 void RunningState::Enter()
 {
-	drivetrain->DisableAntiSlowSpeedRoll();
+	if (shouldRoll)
+		drivetrain->DisableAntiSlowSpeedRoll();
 }
 
 void RunningState::Update()
 {
-	if (HasTurnedOn())
+	if (HasTurnedOn() && shouldStall)
 	{
 		std::cout << "Disabling engine stall" << std::endl;
 		engine->DisableEngineStall();
 		hasStalled = false;
 	}
-	else if (HasStalled())
+	else if (HasStalled() && shouldStall)
 	{
 		std::cout << "Stalling car" << std::endl;
 		engine->EnableEngineStall();
