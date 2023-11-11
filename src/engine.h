@@ -1,6 +1,6 @@
 #pragma once
-#include "dynamic_address.h"
-#include "instruction.h"
+#include "memory_tools/dynamic_address.h"
+#include "memory_tools/instruction.h"
 
 class Engine
 {

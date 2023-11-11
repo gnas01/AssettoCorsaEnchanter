@@ -3,15 +3,16 @@
 
 #include <iostream>
 #include "process.h"
-#include "asseto_corsa_procmon.h"
-#include "state_machine.h"
-#include "waiting_state.h"
-#include "running_state.h"
-#include "state_alias.h"
+#include "memory_tools/asseto_corsa_procmon.h"
+#include "state_machine/state_machine.h"
+#include "state_machine/waiting_state.h"
+#include "state_machine/running_state.h"
+#include "state_machine/state_alias.h"
 #include "engine.h"
 #include "drivetrain.h"
 #include <thread>
-#include "configuration.h"
+#include "config/configuration.h"
+
 
 Engine* BuildEngine(Process* assetoCorsa);
 Drivetrain* BuildDrivetrain(Process* assetoCorsa);

@@ -1,7 +1,7 @@
 #pragma once
 #include "state_machine.h"
 #include "state.h"
-#include "asseto_corsa_procmon.h"
+#include "../memory_tools/asseto_corsa_procmon.h"
 
 class WaitingState: public State
 {

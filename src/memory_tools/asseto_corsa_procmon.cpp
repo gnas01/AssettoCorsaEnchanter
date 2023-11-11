@@ -1,5 +1,4 @@
 #include "asseto_corsa_procmon.h"
-#include "engine.h"
 #include <iostream>
 
 AssetoCorsaProcMon::AssetoCorsaProcMon(Process* process, DynamicAddress* isPlayingAddress)

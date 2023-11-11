@@ -1,6 +1,6 @@
 #include "state_machine.h"
 #include "state.h"
-#include "duplicate_alias_exception.h"
+#include "exceptions/duplicate_alias_exception.h"
 
 void StateMachine::SetState(StateAlias stateAlias)
 {
