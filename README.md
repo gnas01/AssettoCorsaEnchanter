@@ -1,4 +1,4 @@
-# AssetoCorsaEnchanter
+# AssettoCorsaEnchanter
 
 AssettoCorsaEnchanter is a tool designed to enhance the realism of Assetto Corsa, a popular racing simulation game.
 
