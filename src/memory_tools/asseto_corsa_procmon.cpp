@@ -33,10 +33,7 @@ bool AssetoCorsaProcMon::IsRunning()
 		byte isPlayingAddressResult;
 		isPlayingAddress->Read(&isPlayingAddressResult);
 
-		if (isPlayingAddressResult != 1 && isPlayingAddressResult != 0)
-		{
-			isRunning = process->IsValid();
-		}
+		isRunning = process->IsValid();
 
 		return isRunning;
 	}
