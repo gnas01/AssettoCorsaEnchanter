@@ -5,6 +5,9 @@ AssettoCorsaEnchanter is a tool designed to enhance the realism of Assetto Corsa
 **WARNING**:
 AssettoCorsaEnchanter is still in its experimental development phase. Direct manipulation of Assetto Corsa's process memory is complex and may lead to unexpected behavior in the game. Use this tool with caution. For any feature requests or to report bugs, please feel free to open an issue.
 
+### Showcase video
+https://youtu.be/SNPz60kWrdo?si=aMTTx3hpICzC_Wu9
+
 ### Ability to stall
 Currently, Assetto Corsa does not support realistic stalling. Even though the car drops to 0 rpm, all it takes is pressing the accelerator and the car starts moving again. 
 This tool will allow the car to actually stall making it impossible to move the car using the accelerator. To turn the engine on again you can hold the **backspace** button.
