@@ -59,7 +59,7 @@ bool RunningState::HasStalled()
 
 	if (shouldUseEasyStall)
 	{
-		return (currentRpm < 200) && !hasStalled;
+		return (currentRpm < easyStallRpm) && !hasStalled;
 	}
 
 	return (currentRpm + stallThreshold < idleRpm) && !hasStalled;
@@ -69,6 +69,12 @@ bool RunningState::HasTurnedOn()
 {
 	float currentRpm = engine->GetCurrentRpm();
 	float idleRpm = engine->GetIdleRpm();
+
+	if (shouldUseEasyStall)
+	{
+		return (currentRpm > easyStallRpm) && hasStalled;
+	}
+
 	return (currentRpm >= idleRpm - stallThreshold) && hasStalled;
 }
 

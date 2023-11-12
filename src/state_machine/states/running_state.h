@@ -28,6 +28,8 @@ private:
 
 	bool hasStalled = false;
 
+	const int easyStallRpm = 400;
+
 	bool HasStalled();
 	bool HasTurnedOn();
 };
