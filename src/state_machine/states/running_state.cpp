@@ -15,6 +15,7 @@ RunningState::RunningState(StateMachine* stateMachine, Engine* engine, Drivetrai
 
 	Configuration* configuration = Configuration::GetInstance();
 	shouldRoll = configuration->GetShouldRoll();
+	shouldUseEasyStall = configuration->GetShouldUseEasyStall();
 	shouldStall = configuration->GetShouldStall();
 	stallThreshold = configuration->GetStallThreshold();
 }
@@ -52,6 +53,11 @@ bool RunningState::HasStalled()
 {
 	float currentRpm = engine->GetCurrentRpm();
 	int idleRpm = engine->GetIdleRpm();
+
+	if (shouldUseEasyStall)
+	{
+		return (currentRpm < 200) && !hasStalled;
+	}
 
 	return (currentRpm + stallThreshold < idleRpm) && !hasStalled;
 }

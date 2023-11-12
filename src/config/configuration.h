@@ -13,6 +13,7 @@ public:
     bool GetShouldStall();
     bool GetShouldRoll();
     int GetStallThreshold();
+    bool GetShouldUseEasyStall();
 
 
 private:

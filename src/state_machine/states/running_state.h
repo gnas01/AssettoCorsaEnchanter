@@ -23,6 +23,7 @@ private:
 
 	int stallThreshold;
 	bool shouldStall;
+	bool shouldUseEasyStall;
 	bool shouldRoll;
 
 	bool hasStalled = false;

@@ -72,6 +72,13 @@ int Configuration::GetStallThreshold()
     return stallThreshold;
 }
 
+bool Configuration::GetShouldUseEasyStall()
+{
+    std::string shouldStall = GetAttribute("should_use_easy_stall");
+
+    return shouldStall == "true" ? true : false;
+}
+
 std::string Configuration::GetAttribute(const std::string key)
 {
     auto it = configData.find(key);
