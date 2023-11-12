@@ -7,6 +7,7 @@ public:
 	void DisableAntiSlowSpeedRoll();
 	void EnableAntiSlowSpeedRoll();
 
+	void Load();
 	void ClearMemory();
 private:
 	Instruction* openClutchVelocityStopper;

@@ -5,7 +5,6 @@ DynamicAddress::DynamicAddress(Process* process, uintptr_t baseAddress, std::vec
 	this->process = process;
 	this->baseAddress = baseAddress;
 	this->offsets = offsets;
-	this->dynamicMemoryAddress = FindDynamicMemoryAddress();
 }
 
 void DynamicAddress::RefreshDynamicMemoryAddress()

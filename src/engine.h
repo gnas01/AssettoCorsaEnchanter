@@ -16,6 +16,8 @@ public:
 
 	void ClearMemory();
 
+	void Load();
+
 private:
 	DynamicAddress* idleRpm;
 	DynamicAddress* currentRpm;

@@ -10,6 +10,7 @@ public:
 	void RevertBytes();
 	void PatchBytes(std::vector<BYTE>* newBytes);
 	void NopBytes();
+	void Load();
 private:
 	unsigned int originalSize;
 	std::vector<BYTE> originalBytes;

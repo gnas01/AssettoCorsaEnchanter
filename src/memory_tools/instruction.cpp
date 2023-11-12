@@ -5,7 +5,10 @@ Instruction::Instruction(Process* process, uintptr_t baseAddress, unsigned int o
 	this->process = process;
 	this->baseAddress = baseAddress;
     this->originalSize = originalSize;
+}
 
+void Instruction::Load()
+{
     originalBytes.resize(originalSize);
     ReadProcessMemory(process->GetHandle(), (LPCVOID)(baseAddress + process->GetModuleBaseAddress()), &originalBytes[0], originalSize, NULL);
 }

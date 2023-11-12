@@ -50,3 +50,10 @@ void Engine::ClearMemory()
     delete engineStall;
     engineStall = nullptr;
 }
+
+void Engine::Load()
+{
+    idleRpm->RefreshDynamicMemoryAddress();
+    currentRpm->RefreshDynamicMemoryAddress();
+    engineStall->Load();
+}

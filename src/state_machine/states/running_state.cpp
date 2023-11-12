@@ -22,6 +22,9 @@ RunningState::RunningState(StateMachine* stateMachine, Engine* engine, Drivetrai
 
 void RunningState::Enter()
 {
+	engine->Load();
+	drivetrain->Load();
+
 	if (shouldRoll)
 		drivetrain->DisableAntiSlowSpeedRoll();
 }
