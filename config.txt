@@ -1,4 +1,4 @@
 should_stall:true
 should_roll:true
-stall_threshold:1500
+stall_threshold:400
 should_use_easy_stall: true
