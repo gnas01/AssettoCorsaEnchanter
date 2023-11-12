@@ -28,7 +28,7 @@ private:
 
 	bool hasStalled = false;
 
-	const int easyStallRpm = 400;
+	const int easyStallRpm = 350;
 
 	bool HasStalled();
 	bool HasTurnedOn();
