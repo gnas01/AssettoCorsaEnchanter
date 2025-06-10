@@ -27,11 +27,11 @@ Launch AssettoCorsaEnchanter before or after starting Assetto Corsa. The tool wi
 Specific parameters can be adjusted in the config.txt file, which should be located in the same directory as the AssettoCorsaEnchanter executable.
 
 ### config.txt:
-- _can_stall_: Enables or disables car stalling (true/false).
-- _can_roll_: Allows cars to roll at low speeds (true/false).
+- _should_stall_: Enables or disables car stalling (true/false).
+- _should_roll_: Allows cars to roll at low speeds (true/false).
 - _stall_threshold_: Sets the RPM below the car's idle rate needed for the car to stall (int).
 - _should_use_easy_stall_: Overrides stall threshold, in order to stall the car its RPM have to drop below 350 (true/false).
 
 ### Known issues:
-Some cars have weird behavior when the _can_roll_ setting is enabled.
+Some cars have weird behavior when the _should_roll_ setting is enabled.
 
