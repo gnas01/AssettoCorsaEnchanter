@@ -52,9 +52,9 @@ bool Configuration::GetShouldStall()
 
 bool Configuration::GetShouldRoll()
 {
-    std::string shouldStall = GetAttribute("should_roll");
+    std::string shouldRoll = GetAttribute("should_roll");
 
-    return shouldStall == "true" ? true : false;
+    return shouldRoll == "true" ? true : false;
 }
 
 int Configuration::GetStallThreshold()
