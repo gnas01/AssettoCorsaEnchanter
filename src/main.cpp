@@ -65,7 +65,7 @@ int main()
     isPlayingAddress = nullptr;
 
     delete assetoCorsaProcMon;
-    assetoCorsaProcess = nullptr;
+    assetoCorsaProcMon = nullptr;
 }
 
 Engine* BuildEngine(Process* assetoCorsaProcess)
